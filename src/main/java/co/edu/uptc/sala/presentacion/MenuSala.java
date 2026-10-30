@@ -9,7 +9,7 @@ import co.edu.uptc.sala.negocio.Sala;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-/** Todo lo que ve el usuario, con JOptionPane. */
+//Todo lo que ve el usuario, con JOptionPane.
 public class MenuSala {
 
     private static final String TITULO = "Sala de sistemas";
@@ -65,7 +65,17 @@ public class MenuSala {
     }
 
     private void verPortatiles() {
-        // PUNTO 4 · Todos los portatiles en UNA ventana PLAIN_MESSAGE.
+    String portatiles;
+    String texto = "";
+
+    for (Portatil p : sala.getPortatiles()){
+        Portatil portatil = p;
+
+        portatiles = "\n" + p.getCodigo() + " " + p.getMarca() + " " + p.getEstado().getTexto() + "\n";
+        texto += portatiles;
+    }
+    JOptionPane.showMessageDialog(null,texto, TITULO, JOptionPane.PLAIN_MESSAGE);
+    // PUNTO 4 · Todos los portatiles en UNA ventana PLAIN_MESSAGE.
     }
 
     private void prestar() {

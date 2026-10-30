@@ -38,6 +38,28 @@ public class ArchivoSala {
     /** PUNTO 3 · Lee el archivo y devuelve la lista de portatiles. */
     public List<Portatil> cargar() throws IOException {
         List<Portatil> portatiles = new ArrayList<>();
+        List<String> lineas = Files.readAllLines(archivo);
+
+        for (int i = 0; i < lineas.size() ; i++) {
+            String linea = lineas.get(i);
+
+            if (linea.isBlank()) {
+                continue;
+            }
+
+            String[] d = linea.split(SEP);
+            if (d.length != 3) {
+                throw new DatoInvalidoException("La linea " + (i+1) + " del archivo portatiles.txt esta dañada: " + linea);
+            }
+
+            try {
+                portatiles.add(new Portatil(d[0], d[1], EstadoPortatil.valueOf(d[2])));
+
+            }catch (IllegalArgumentException e){
+                throw new DatoInvalidoException("La linea " + (i+1) + " del archivo portatiles.txt esta dañada: " + linea);
+            }
+
+        }
         // PUNTO 3 · Escriba aqui la lectura del archivo.
         return portatiles;
     }
