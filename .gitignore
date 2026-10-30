@@ -1,0 +1,4 @@
+# Carpetas y archivos que Git debe ignorar
+/target/
+.idea/
+*.iml
